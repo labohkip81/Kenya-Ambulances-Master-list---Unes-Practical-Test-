@@ -36,7 +36,7 @@ class Institution(models.Model):
     location = AddressField()
     phone_number = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_add = True)
+    updated = models.DateTimeField(auto_now = True)
 
     def __str__(self):
         return self.name
@@ -44,7 +44,7 @@ class Institution(models.Model):
     
 
 class Ambulance(models.Model):
-    institution = models.ForeignKey(Institution, verbose_name=_(""), on_delete=models.CASCADE)
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     plate_number = models.CharField(max_length=50)
     type = models.CharField(max_length=50, choices=AMBULANCE_TYPES)
     image = models.ImageField(upload_to='media/')
