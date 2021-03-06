@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from address.models import AddressField
+from phonenumber_field.modelfields import PhoneNumberField
 
 User = settings.AUTH_USER_MODEL
 
@@ -33,6 +34,7 @@ class Institution(models.Model):
     type = models.CharField(max_length=150, choices=INSTITUTION_TYPE)
     status =  models.CharField(max_length=50, choices=HOSPITAL_STATUS)
     location = AddressField()
+    phone_number = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_add = True)
 
@@ -48,7 +50,7 @@ class Ambulance(models.Model):
     image = models.ImageField(upload_to='media/')
     services = models.TextField()
     capacity = models.IntegerField()
-    request_contact = 
+    request_contact = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
     updated =  models.DateTimeField(auto_now=True)
 

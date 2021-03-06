@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "address",
+    "phonenumber_field",
 ]
 
 LOCAL_APPS = [
@@ -300,3 +301,6 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 #GOOGLE MAPS Stuff
 GOOGLE_API_KEY = "AIzaSyCg5AWSAXpLxuAvbw4a54eR5CX5YyDASb0"
+
+#Django phonenumber field
+PHONENUMBER_DEFAULT_REGION = "KE"
