@@ -17,26 +17,24 @@ Kenya Ambulances master list
 #Running Locally With Docker
 
 1. Clone the project:
-```
-    git clone https://github.com/Labohkip81/Kenya-Ambulances-Master-list---Unes-Practical-Test-.git
-```
+
+    $ git clone https://github.com/Labohkip81/Kenya-Ambulances-Master-list---Unes-Practical-Test-.git
+
 2. cd into the folder:
-```
-    cd Kenya-Ambulances-Master-list---Unes-Practical-Test/
-```
+      $cd Kenya-Ambulances-Master-list---Unes-Practical-Test/
+
 3. Build the docker image and run:
-```
-docker compose -f local.yml build 
-```
+
+    $docker compose -f local.yml build 
+
 4. Running the container:
-```
-docker compose -f local.yml run 
-```
+
+    $docker compose -f local.yml run 
+
 
 5. Running Commands interactively 
-```
-docker-compose -f local.yml run --rm django python manage.py <command>
-```
+    $ docker-compose -f local.yml run --rm django python manage.py <command>
+
 
 Basic Commands
 --------------
