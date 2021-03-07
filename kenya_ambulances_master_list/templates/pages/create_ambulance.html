@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% block title %} KAML :: Add Ambulance {% endblock title %} {% block content %}
+
+<section class="job-information-area ptb-100">
+  <div class="container">
+    <div class="job-information">
+      <h3>Add an Ambulance</h3>
+      <form method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+
+        <button class="default-btn">
+        CREATE
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

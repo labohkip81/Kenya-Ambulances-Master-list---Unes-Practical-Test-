@@ -2,10 +2,12 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
+import os
 
 import environ
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+print(ROOT_DIR)
 # kenya_ambulances_master_list/
 APPS_DIR = ROOT_DIR / "kenya_ambulances_master_list"
 env = environ.Env()
@@ -85,6 +87,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "address",
     "phonenumber_field",
+    "mapbox_location_field"
 ]
 
 LOCAL_APPS = [
@@ -110,7 +113,7 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
+LOGIN_REDIRECT_URL = "home"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
 
@@ -304,3 +307,9 @@ GOOGLE_API_KEY = "AIzaSyCg5AWSAXpLxuAvbw4a54eR5CX5YyDASb0"
 
 #Django phonenumber field
 PHONENUMBER_DEFAULT_REGION = "KE"
+
+#MAPBOX Stuff
+MAPBOX_KEY = 'pk.eyJ1IjoibGFib2hraXA4MSIsImEiOiJja2VlYTdhbWEwZWFzMnhvNmxpdW14Z3RtIn0.Ag8mq9ZnahXW4FLLXSLb-w'
+
+#MAX-Mind map stuff
+GEOIP_PATH = os.path.join(ROOT_DIR, 'geoip')
