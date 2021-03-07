@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 from .models import Ambulance, Institution
+from .forms import AmbulanceForm
 
 # Create your views here.
 class Homepage(ListView):
@@ -20,11 +26,19 @@ class Homepage(ListView):
     
     
 
-class CreateAmbulance(CreateView):
+class AmbulanceCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     Create a new ambulance instance
     """
-    pass
+    template_name = 'pages/create_ambulance.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Ambulance has been created successfully'
+    form_class = AmbulanceForm
+
+    def form_valid(self, form, *args, **kwargs):
+        form.instance.uploaded_by = self.request.user
+        return super(AmbulanceCreateView, self).form_valid(form)
+
 
 
 class AmbulanceUpdateView(UpdateView):
