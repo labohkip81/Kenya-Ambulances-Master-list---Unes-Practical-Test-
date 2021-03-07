@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<section class="job-details-area ptb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="hot-jobs-list">
+          <div class="row align-items-center">
+            <div class="col-lg-2">
+              <div class="hot-jobs-img">
+                <img src="{% static 'images/delete.png' %}" alt="Image" />
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="hot-jobs-content">
+                <h3>Confirm Delete?</h3>
+                <ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="default-btn">
+            <form method="post">
+                {% csrf_token %}
+            <button class='btn btn-default' type="submit" value="Confirm" />DELETE</div>
+            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+     
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

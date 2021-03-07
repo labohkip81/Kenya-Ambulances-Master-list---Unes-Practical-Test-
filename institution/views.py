@@ -55,5 +55,7 @@ class AmbulanceUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     
 
-class AmbulanceDeleteView(DeleteView):
-    pass
+class AmbulanceDeleteView(LoginRequiredMixin, SuccessMessageMixin,DeleteView):
+    model = Ambulance
+    success_url = reverse_lazy('home')
+    success_message = 'Ambulance instance has been deleted successfully'
