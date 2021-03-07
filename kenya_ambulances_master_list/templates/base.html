@@ -33,13 +33,18 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <script src="{% static 'js/notiflix-aio.js' %} "></script>
 
   <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+  <script>
+ 
+  </script>
 
   <title>{% block title %}Kenya ambulances master list(Kml){% endblock title %}</title>
 </head>
 
 <body>
+
 
   <div class="preloader">
     <div class="lds-ripple">
@@ -47,7 +52,12 @@
       <div></div>
     </div>
   </div>
-
+  <!-- Start of messages HAS TO BE APPENDED INSIDE THE BODY TAG-->
+  <script>
+ {% for message in messages %}
+    Notiflix.Notify.Success('{{message}}');
+  {% endfor %}
+  </script>
 
   <header class="header-area">
 
@@ -92,7 +102,7 @@
           <div class="mobile-menu">
             <div class="logo">
               <a href="#">
-                <img src="" alt="logo">
+                <img src="{% static 'images/ambulance.webp' %}" height='70px' width='70px' alt="logo">
               </a>
             </div>
           </div>
@@ -102,7 +112,7 @@
         <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="#">
-              <img src="#" alt="logo">
+              <img src="{% static 'images/ambulance.webp' %}" height='70px' width='70px' alt="logo">
             </a>
             <div class="collapse navbar-collapse mean-menu">
               <ul class="navbar-nav m-auto">
@@ -130,7 +140,7 @@
               </ul>
               <div class="others-option">
                 <div class="get-quote">
-                  <a href="" class="default-btn btn-two">
+                  <a href="{% url 'create-ambulance' %}" class="default-btn btn-two">
                     Add an ambulance
                   </a>
                 </div>
@@ -152,7 +162,7 @@
             <div class="option-inner">
               <div class="others-option justify-content-center d-flex align-items-center">
                 <div class="get-quote">
-                  <a href="#" class="default-btn">
+                  <a href="{% url 'create-ambulance' %}" class="default-btn">
                     Add an Ambulance
                   </a>
                 </div>
@@ -176,8 +186,8 @@
       <div class="row">
         <div class="col-lg-3 col-md-6">
           <div class="single-footer-widget single-bg">
-            <a href="#" class="logo">
-              <img src="" alt="logo">
+            <a href="{% url 'home' %}" class="logo">
+              <img src="{% static 'images/ambulance.webp' %}" height='150px' width='150px' alt="logo">
             </a>
             <p>Thanks for using our platform to serve you better.</p>
             

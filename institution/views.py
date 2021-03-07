@@ -30,6 +30,7 @@ class AmbulanceCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     Create a new ambulance instance
     """
+    model = Ambulance
     template_name = 'pages/create_ambulance.html'
     success_url = reverse_lazy('home')
     success_message = 'Ambulance has been created successfully'
@@ -41,8 +42,18 @@ class AmbulanceCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 
-class AmbulanceUpdateView(UpdateView):
-    pass
+class AmbulanceUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Ambulance
+    template_name = 'pages/create_ambulance.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Ambulance has been details have been updated successfully'
+    form_class = AmbulanceForm
+
+    def form_valid(self, form, *args, **kwargs):
+        form.instance.uploaded_by = self.request.user
+        return super(AmbulanceUpdateView, self).form_valid(form)
+
+    
 
 class AmbulanceDeleteView(DeleteView):
     pass
