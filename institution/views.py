@@ -74,3 +74,24 @@ class InstitutionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
     def form_valid(self, form, *args, **kwargs):
         form.instance.uploaded_by = self.request.user
         return super(InstitutionCreateView, self).form_valid(form)
+
+class InstitutionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Update and existing institution instance
+    """
+    model = Institution
+    template_name = 'institution/institution_create.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Instituion has been created successfully'
+    form_class = InstitutionForm
+
+    def form_valid(self, form, *args, **kwargs):
+        form.instance.uploaded_by = self.request.user
+        return super(InstitutionUpdateView, self).form_valid(form)
+
+class InstitutionDeleteView(LoginRequiredMixin, DeleteView):
+    """
+    Delete an institution instance
+    """
+    model =  Institution
+    success_url = reverse_lazy('home')
