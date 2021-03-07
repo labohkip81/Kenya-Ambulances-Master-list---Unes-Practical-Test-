@@ -82,12 +82,8 @@
                     Log In
                   </a>
                 </li>
-                <li>
-                  <a href="">
-                    <i class="bx bxs-user"></i>
-                    Register
-                  </a>
-                </li>
+               
+                
               </ul>
             </div>
           </div>
@@ -117,14 +113,8 @@
             <div class="collapse navbar-collapse mean-menu">
               <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    Map View
-                  </a>
-                  
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    List View
+                  <a href="{% url 'home' %}" class="nav-link active">
+                    Home
                   </a>
                   
                 </li>
@@ -138,13 +128,15 @@
                   
                 </li>
               </ul>
-              <div class="others-option">
+              <div class="others-option ml-2">
                 <div class="get-quote">
                   <a href="{% url 'create-ambulance' %}" class="default-btn btn-two">
                     Add an ambulance
                   </a>
                 </div>
+                
               </div>
+              
             </div>
           </nav>
         </div>
@@ -221,10 +213,13 @@
             <h3>Help</h3>
             <ul class="import-link">
               <li>
-                <a href="#">First Aid</a>
+                <a href="{% url 'create-institution' %}">Add an institution</a>
               </li>
               <li>
-                <a href="#">Covid-19 Precautions</a>
+                <a href="https://www.redcross.org/take-a-class/first-aid/performing-first-aid/first-aid-steps">First Aid</a>
+              </li>
+              <li>
+                <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">Covid-19 Precautions</a>
               </li>
               <li>
                 <a href="#">FAQ</a>
