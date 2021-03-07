@@ -8,7 +8,8 @@ from .views import (
                 InstitutionCreateView,
                 InstitutionUpdateView,
                 InstitutionDeleteView,
-                InstitutionDetailView
+                InstitutionDetailView,
+                search_view
             )
 
 urlpatterns = [
@@ -20,4 +21,5 @@ urlpatterns = [
     path('update-institution/<int:pk>/', InstitutionUpdateView.as_view(), name='update-institution'),
     path('delete-institution/<int:pk>/', InstitutionDeleteView.as_view(), name='delete-institution'),
     path('institution/<int:pk>/', InstitutionDetailView.as_view(), name='institution_detail'),
+    path('search-institution/', search_view,name='search-institution'),
 ]
