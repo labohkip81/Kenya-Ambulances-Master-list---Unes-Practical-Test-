@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="zxx">
+<html lang="en-US">
 <head>
 
   <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
   <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
 
-  <title> Kenya ambulances master list(Kml)</title>
+  <title>{% block title %}Kenya ambulances master list(Kml){% endblock title %}</title>
 </head>
 
 <body>
@@ -67,7 +67,7 @@
               
               <ul class="log-in">
                 <li>
-                  <a href=">
+                  <a href="{% url 'account_login' %}">
                     <i class="bx bxs-lock"></i>
                     Log In
                   </a>
@@ -101,7 +101,7 @@
       <div class="desktop-nav">
         <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
               <img src="#" alt="logo">
             </a>
             <div class="collapse navbar-collapse mean-menu">
@@ -166,6 +166,10 @@
   </header>
 
 
+  {% block content %}
+  
+  
+  {% endblock content %}
 
   <footer class="footer-area footer-area-two pt-100 pb-70">
     <div class="container">
@@ -221,9 +225,8 @@
       </div>
     </div>
   </footer>
-
-
-  <div class="copy-right-area copy-right-area-two">
+  
+   <div class="copy-right-area copy-right-area-two">
     <div class="container">
       <p>
         ©

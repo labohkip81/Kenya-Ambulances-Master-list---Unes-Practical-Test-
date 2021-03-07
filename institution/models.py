@@ -10,6 +10,11 @@ INSTITUTION_TYPE = (
     ("PRIV", "PRIVATE INSTITUTION"),
 )
 
+AMBULANCE_STATUS = (
+    ("AVAILABLE", "AVAILABLE"),
+    ("ENGAGED", "ENGAGED"),
+)
+
 HOSPITAL_STATUS = (
     ("NOT OPERATIONAL", "NOT OPERATIONAL"),
     ("OPERATION", "OPERATIONAL"),
@@ -49,6 +54,7 @@ class Ambulance(models.Model):
     type = models.CharField(max_length=50, choices=AMBULANCE_TYPES)
     image = models.ImageField(upload_to='media/')
     services = models.TextField()
+    status = models.CharField(choices=AMBULANCE_STATUS, max_length=50, default='AVAILABLE')
     capacity = models.IntegerField()
     request_contact = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
