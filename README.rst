@@ -14,12 +14,29 @@ Kenya Ambulances master list
 :License: MIT
 
 
-Settings
---------
+#Running Locally With Docker
 
-Moved to settings_.
+1. Clone the project:
+```
+    git clone https://github.com/Labohkip81/Kenya-Ambulances-Master-list---Unes-Practical-Test-.git
+```
+2. cd into the folder:
+```
+    cd Kenya-Ambulances-Master-list---Unes-Practical-Test/
+```
+3. Build the docker image and run:
+```
+docker compose -f local.yml build 
+```
+4. Running the container:
+```
+docker compose -f local.yml run 
+```
 
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
+5. Running Commands interactively 
+```
+docker-compose -f local.yml run --rm django python manage.py <command>
+```
 
 Basic Commands
 --------------
@@ -60,14 +77,6 @@ Running tests with py.test
 
   $ pytest
 
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-
 
 
 
@@ -76,14 +85,7 @@ Deployment
 
 The following details how to deploy this application.
 
-
-
-Docker
-^^^^^^
-
-See detailed `cookiecutter-django Docker documentation`_.
-
-.. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
-
-
+```
+docker compose -f production.yml up
+```
 
