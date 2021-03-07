@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 from .models import Ambulance, Institution
-from .forms import AmbulanceForm
+from .forms import AmbulanceForm, InstitutionForm
 
 # Create your views here.
 class Homepage(ListView):
@@ -59,3 +59,18 @@ class AmbulanceDeleteView(LoginRequiredMixin, SuccessMessageMixin,DeleteView):
     model = Ambulance
     success_url = reverse_lazy('home')
     success_message = 'Ambulance instance has been deleted successfully'
+
+
+class InstitutionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    """
+    Create a new institution instance
+    """
+    model = Institution
+    template_name = 'institution/institution_create.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Instituion has been created successfully'
+    form_class = InstitutionForm
+
+    def form_valid(self, form, *args, **kwargs):
+        form.instance.uploaded_by = self.request.user
+        return super(InstitutionCreateView, self).form_valid(form)

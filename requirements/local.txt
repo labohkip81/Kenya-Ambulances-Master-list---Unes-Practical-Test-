@@ -36,3 +36,4 @@ pytest-django==3.9.0  # https://github.com/pytest-dev/pytest-django
 django-currentuser==0.5.2 #https://pypi.org/project/django-currentuser/
 -e git+https://github.com/Labohkip81/django-address.git#egg=django-address
 django-phonenumber-field[phonenumbers]==5.0.0
+django-mapbox-location-field===1.7.1 #https://pypi.org/project/django-mapbox-location-field/

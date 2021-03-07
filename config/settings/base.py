@@ -85,6 +85,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "address",
     "phonenumber_field",
+    "mapbox_location_field"
 ]
 
 LOCAL_APPS = [
@@ -304,3 +305,6 @@ GOOGLE_API_KEY = "AIzaSyCg5AWSAXpLxuAvbw4a54eR5CX5YyDASb0"
 
 #Django phonenumber field
 PHONENUMBER_DEFAULT_REGION = "KE"
+
+#MAPBOX Stuff
+MAPBOX_KEY = 'pk.eyJ1IjoibGFib2hraXA4MSIsImEiOiJja2VlYTdhbWEwZWFzMnhvNmxpdW14Z3RtIn0.Ag8mq9ZnahXW4FLLXSLb-w'

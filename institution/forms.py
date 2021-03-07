@@ -6,4 +6,11 @@ class AmbulanceForm(forms.ModelForm):
     class Meta:
         model = Ambulance
         fields = "__all__"
+
+
+class InstitutionForm(forms.ModelForm):
+    class Meta:
+        model = Institution
+        fields = "__all__"
         exclude = ['uploaded_by',]
+

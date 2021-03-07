@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from address.models import AddressField
 from phonenumber_field.modelfields import PhoneNumberField
+from mapbox_location_field.models import LocationField 
 
 User = settings.AUTH_USER_MODEL
 
@@ -38,7 +39,15 @@ class Institution(models.Model):
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=150, choices=INSTITUTION_TYPE)
     status =  models.CharField(max_length=50, choices=HOSPITAL_STATUS)
-    location = AddressField()
+    location = LocationField(
+        map_attrs={
+            "marker_color": "blue",
+            "center": [36.8219, -1.2921],
+            "zoom": 8,
+        },
+        blank=True,
+        null=True,
+    )
     phone_number = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now = True)
