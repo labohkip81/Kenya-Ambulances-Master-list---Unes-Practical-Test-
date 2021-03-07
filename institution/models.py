@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.conf import settings
 from address.models import AddressField
@@ -36,6 +37,7 @@ class Institution(models.Model):
     """ 
     Model to represent institution that owns a specific ambulance
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=150, choices=INSTITUTION_TYPE)
@@ -54,6 +56,7 @@ class Institution(models.Model):
     phone_number = PhoneNumberField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now = True)
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.name
@@ -77,6 +80,7 @@ class Institution(models.Model):
     
 
 class Ambulance(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     plate_number = models.CharField(max_length=50)
     type = models.CharField(max_length=50, choices=AMBULANCE_TYPES)

@@ -57,7 +57,7 @@ def Homepage(request): #noqa
             [x.latitude, x.longitude],
             tooltip=title,
             popup=popup,
-            icon=folium.Icon(color="purple"),
+            icon=folium.Icon(color="blue"),
         ).add_to(m)
    
     m = m._repr_html_()
