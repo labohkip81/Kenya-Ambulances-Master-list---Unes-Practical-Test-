@@ -1,5 +1,5 @@
 import folium
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
 from django.views.generic import (
             CreateView, 
@@ -11,10 +11,11 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.gis.geoip2 import GeoIP2
+from django.contrib.postgres.search import SearchVector
 
 
 from .models import Ambulance, Institution
-from .forms import AmbulanceForm, InstitutionForm
+from .forms import AmbulanceForm, InstitutionForm, SearchForm
 
 
 def get_geo(ip):
@@ -70,11 +71,56 @@ def Homepage(request): #noqa
     return render(request, 'pages/home.html', context)
 
 
+def search_view(request):
+
+    """
+    Search for institutions; 
+    Implementation multi-field using postgress full-text search"""
+
+    form = SearchForm
+    query = None
+    institutions = []
+    if "query" in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data["query"]
+            results = Institution.objects.annotate(
+                search=SearchVector("name", "type", "status", 'phone_number', 'location', 'description'),
+            ).filter(search=query)
+    else:
+        return redirect("home")
 
 
+    institutions = results
 
+
+    ip = "154.123.172.215"
+    country, city, lat, lon = get_geo(ip)
+    location_lat = lat
+    location_lon = lon
+    m = folium.Map(
+        location=get_center_coordinates(location_lat, location_lon), zoom_start=8
+    )
+    # Location marker for institutions.
+    for x in institutions:
+        html = f'<a href="{x.get_absolute_url()}" target="a_blank"> <span>{x.name}</span> <img src="{x.logo.url}"> </a>'
+        title = f"{x.name}"
+        popup = folium.Popup(html)
+        folium.Marker(
+            [x.latitude, x.longitude],
+            tooltip=title,
+            popup=popup,
+            icon=folium.Icon(color="blue"),
+        ).add_to(m)
+   
+    m = m._repr_html_()
     
-    
+    context = {
+        "map": m,
+    }
+
+    return render(request, 'pages/home.html', context)
+
 
 class AmbulanceCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
