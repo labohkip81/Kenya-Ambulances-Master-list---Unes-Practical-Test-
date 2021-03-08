@@ -50,6 +50,15 @@
           <p>
             {{object.description}}
           </p>
+
+          <div class="col-lg-6">
+            <div class="hot-jobs-btn">
+              <a href="{% url 'delete-institution' object.id %}" class="btn btn-danger">delete</a>
+            </div>
+            <div class="hot-jobs-btn">
+              <a href="{% url 'update-institution' object.id %}" class="btn btn-primary">Update</a>
+            </div>
+          </div>
          
         </div>
       </div>
